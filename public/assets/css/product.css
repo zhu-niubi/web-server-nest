@@ -1,0 +1,267 @@
+.height-lg-75 {
+  height: 75%;
+}
+
+.height-lg-50 {
+  height: 50% !important;
+}
+
+.min-vh-lg-50 {
+  min-height: 50vh !important;
+}
+
+.min-vh-lg-90 {
+  min-height: 90vh !important;
+}
+
+.w-lg-8 {
+  width: 8% !important;
+}
+.border-none {
+  border: none !important;
+}
+.border-radius-0 {
+  border-radius: 0 !important;
+}
+.text-white-80 {
+  --bs-text-opacity: 1;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.my-h4 {
+  font-size: 0.98438rem !important;
+  font-weight: 600;
+}
+.my-h5 {
+  font-size: 0.875rem !important;
+  font-weight: 600;
+}
+.my-h6 {
+  font-size: 0.76563rem !important;
+  font-weight: 600;
+}
+
+.font-weight-6 {
+  font-weight: 600 !important;
+}
+
+/* 1 */
+.font-size-1 {
+  font-size: 1rem;
+}
+/* 2 */
+
+.font-size-2 {
+  font-size: 1.2rem;
+}
+@media (min-width: 360px) {
+  .font-size-1 {
+    font-size: 0.6rem !important;
+  }
+  .font-size-2 {
+    font-size: 0.8rem !important;
+  }
+}
+@media (min-width: 576px) {
+  .font-size-1 {
+    font-size: 0.6rem !important;
+  }
+  .font-size-2 {
+    font-size: 0.8rem !important;
+  }
+}
+@media (min-width: 992px) {
+  .font-size-1 {
+    font-size: 0.8rem;
+  }
+  .font-size-2 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .font-size-1 {
+    font-size: 0.8rem;
+  }
+  .font-size-2 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .font-size-1 {
+    font-size: 1rem;
+  }
+  .font-size-2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* 菜单栏缩小时候的样式 */
+@media (max-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    background-color: rgb(0, 0, 0) !important;
+    width: 100%;
+  }
+  .navbar-expand-lg .menu-li {
+    transform: skew(-180deg) !important;
+    padding: 0.5rem 0;
+  }
+
+  .navbar-expand-lg .menu-li a {
+    transform: skew(0deg) !important;
+  }
+
+  .navbar-expand-lg .menu-li .menu-li-s {
+    border: none !important;
+  }
+
+  .navbar-expand-lg .menu-li .menu-li-s .dropdown-item .menu-li-text {
+    transform: skew(0deg) !important;
+    font-size: 0.76563rem !important;
+    font-weight: 600;
+    padding: 0.5rem 0;
+  }
+
+  .navbar-expand-lg .menu-li .menu-li-s .dropdown-item:hover {
+    background: #25AE9C !important;
+  }
+}
+
+.position-relative {
+  position: relative !important;
+}
+.img-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.img-footer-text {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 20%;
+}
+.text-green {
+  color: #01ad63 !important;
+}
+.text-blue {
+  color: #2ED9C3 !important;
+}
+.bg-green {
+  background-color: #01ad63 !important;
+}
+.bg-blue {
+  background-color: #2ED9C3 !important;
+}
+.navbar-expand-xl.navbar-dark .navbar-nav.bj-black {
+  background-color: #000 !important;
+}
+
+/* 覆盖菜单样式 */
+.menu-li {
+  transform: skew(155deg);
+  border-radius: 0 !important;
+}
+
+.menu-li:hover {
+  background: #3d3d3d;
+}
+
+.menu-li a {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+  padding: 4px 10px !important;
+  transform: skew(-155deg);
+}
+
+.menu-li .menu-li-s {
+  background: #3d3d3d !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 100% !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.menu-li .menu-li-s .dropdown-item {
+  border-top: 2px solid rgba(0, 0, 0, 0.5) !important;
+  transform: skew(180deg) !important;
+  border-radius: 0 !important;
+}
+.menu-li-s .dropdown-item:not(:last-child) {
+  margin-bottom: 0 !important;
+}
+
+.menu-li .menu-li-s .dropdown-item .menu-li-text {
+  transform: skew(-155deg) !important;
+  padding: 0.2rem 0;
+}
+
+.menu-li .menu-li-s .dropdown-item:hover {
+  background: #25AE9C !important;
+}
+
+/* 覆盖菜单原有框架后面带小箭头样式 */
+.menu-li .menu-li-s .dropdown-item:hover::after {
+  opacity: 0 !important;
+}
+
+/* 菜单栏下滑背景 */
+.navbar.navbar-scrolled.navbar-light {
+  background-color: rgba(0, 0, 0, 0.9);
+  /* box-shadow: none; */
+}
+
+.margin-r-0 {
+  margin-right: 0 !important ;
+}
+
+.line-height-0 {
+  line-height: 1;
+}
+
+.tm {
+  font-weight: 100 !important;
+  color: #fff;
+  transform: scale(0.5);
+}
+
+@media (min-width: 360px) {
+  .mx-sm-center {
+    text-align: center !important;
+  }
+  .w-sm-25 {
+    display: inline-block;
+    width: 25% !important;
+  }
+  .content-px-1{
+    padding-left: 2rem;
+  }
+  
+}
+
+@media (min-width: 576px) {
+  .mx-sm-center {
+    text-align: start !important;
+  }
+  .w-sm-25 {
+    display: inline-block;
+    width: 100% !important;
+  }
+  .content-px-1{
+    padding-left: 1rem;
+  }
+}
+
+
+/* 合作厂商的图片圆角 */
+.card-img , .card-img-top{
+  border-radius: 0 !important;
+}
+
+.card-transition-zoom:hover .card-img {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+

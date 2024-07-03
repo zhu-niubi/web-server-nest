@@ -1,0 +1,62 @@
+kind: pipeline
+name: isffilm-server-deploy
+
+node:
+  runner: nlxisf
+
+workspace:
+  path: /drone/src
+
+steps:
+  - name: scp files
+    image: appleboy/drone-scp
+    pull: if-not-exists
+    settings:
+      host:
+        from_secret: ISFWEB_HOST
+      username:
+        from_secret: ISFWEB_USER
+      key:
+        from_secret: ISFWEB_SSHKEY
+      port:
+        from_secret: ISFWEB_PORT
+      target: /isf/isffilm/isf-server
+      overwrite: true
+      source:
+        - public/assets/css
+        - public/assets/js
+        - src
+        - views
+        - package.json
+
+  - name: ssh
+    image: appleboy/drone-ssh
+    pull: if-not-exists
+    settings:
+      host:
+        from_secret: ISFWEB_HOST
+      username:
+        from_secret: ISFWEB_USER
+      key:
+        from_secret: ISFWEB_SSHKEY
+      port:
+        from_secret: ISFWEB_PORT
+      # command_timeout: 10m
+      script:
+        - echo "start deploy ..."
+        - node -v
+        - npm -v
+        - cd /isf/isffilm
+        - ls -la
+        - docker-compose ps
+        - docker-compose up -d --build --remove-orphans isf-server
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+volumes:
+  - name: cache
+    host:
+      path: /tmp/cache

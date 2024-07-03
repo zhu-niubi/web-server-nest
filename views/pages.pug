@@ -1,0 +1,56 @@
+extends ./layout/main.pug
+
+
+block banner
+	if data
+		-const {page} = data
+		// Hero
+		.d-flex.bg-img-center(style='background-image: url('+( page.cover || '/assets/resources/1661833702690.jpg') +');')
+			.container.d-flex.justify-content-end.flex-column.min-vh-lg-35.content-space-4.content-space-lg-b-3
+				.w-lg-65.text-center.mx-lg-auto.mb-5.mb-sm-7.mb-lg-10
+					span.text-center
+					h3.display-6.text-blue #{page.name}
+				// End Hero
+
+
+block content
+	//- | #{JSON.stringify(data)}
+	if data
+		-const {page} = data
+		// Content
+		.container.content-space-3
+			.w-lg-75.mx-lg-auto
+				// Card
+				.card.card-lg.card-shadow.min-vh-lg-100
+					// Header
+					.card-header.bg-blue
+						h1.card-title.h2.text-black #{page.title}
+						//p.card-text.text-black #{websiteConfig.i18n.pages.createdAt}: #{page.createdAt}
+					// End Header
+					// Card Body
+					.card-body !{page.content}
+					// End Card Body
+				// End Card
+
+			if websiteConfig.footer.factoryVideo.video
+				.row
+					.col
+						style.
+							video {
+								display: block;
+								margin: 0 auto;
+								width: 75%; /* 调整视频宽度 */
+								border-radius: 10px; /* 添加圆角 */
+								margin-top: 20px;
+							}
+						video(controls='controls')
+							source(src=websiteConfig.footer.factoryVideo.video, type='video/mp4')
+
+
+	if websiteConfig.global.aboutUsImgs
+		.row.d-flex.justify-content-center.flex-column
+			.col
+				each img in websiteConfig.global.aboutUsImgs
+					.d-flex.bg-img-center(style="background-image: url(" + img + ");")
+						.min-vh-lg-55
+

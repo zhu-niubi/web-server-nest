@@ -1,0 +1,76 @@
+extends ../layout/main.pug
+
+block banner
+	// Hero
+	.d-flex.bg-img-center(style='background-image: url(/assets/img/1920x800/img2.jpg);')
+		.container.d-flex.justify-content-end.flex-column.min-vh-lg-35.content-space-1.content-space-lg-b-3
+			.w-lg-65.text-center.mx-lg-auto.mb-5.mb-sm-7.mb-lg-10
+				span.text-white.text-center
+					//- | We&apos;re hiring for 
+					//- span.fw-bold 72 positions
+					//- a.badge.bg-dark.text-white.rounded-pill.ms-1(href='#openingsSection') View opening
+				h3.display-6.text-white #{websiteConfig.i18n.article-detail.informationDetail}
+			//-   p.lead.text-white We&apos;re on a mission to make high-quality sites accessible for all.
+			// End Hero
+
+
+block content
+	//-  | #{JSON.stringify(data)}
+	// Card Grid
+	.container.content-space-1
+		.row.justify-content-lg-between
+			.col-lg-8.mb-10.mb-lg-0
+				.row.mb-5
+					.col-md-10.col-lg-8.offset-md-1.offset-lg-2
+						figure.blockquote-lg.text-center.mb-3
+							blockquote.blockquote
+								| #{data.title}
+								span.blockquote-footer-source #{data.digest}
+					// End Col
+				.row.mb-3
+					.col-10.col-md-8.col-lg-10.offset-1.offset-md-2.offset-lg-1
+						p !{data.content}
+						// End Col
+				.row.mb-3.content-space-1
+					.col-10.col-md-8.col-lg-10.offset-1.offset-md-2.offset-lg-1
+						.d-flex.align-items-center.mb-4
+							.flex-shrink-0
+								img.avatar.avatar-circle(src=`${data.cover || '/assets/img/160x160/img10.jpg'}`, alt=data.author loading="lazy")
+							.flex-grow-1.ms-3
+								h6.mb-0 #{data.author}
+								ul.list-inline.list-separator.fs-5.mb-0
+									li.list-inline-item
+										span #{data.time}
+									li.list-inline-item
+										| #{websiteConfig.i18n.article-detail.created}
+
+			// End Col
+			.col-lg-3.content-space-3
+				.mb-7
+					.mb-3
+						h4 #{websiteConfig.i18n.article-detail.relatedProducts}
+					// List Group
+					ul.list-group.list-group-lg
+						each product in data.relevantProducts
+							// Item
+							li.list-group-item
+								a(href='/'+local+'/products/detail/'+product.urlIndex+'.html')
+									.row.align-items-center
+										.col
+											h6.mb-1 #{product.name}
+										// End Col
+										.col-auto
+											i.bi-chevron-right
+									// End Col
+									// End Row
+									// End Item
+
+						// End List Group   
+						.mb-7.content-space-1
+							.mb-3
+								h4 #{websiteConfig.i18n.article-detail.tags}
+							each itemTag in data.tags?data.tags:[]
+								btn.btn-soft-secondary.btn-sm.mb-1.me-1() #{itemTag}
+			// End Col 
+			// End Row
+			// End Card Grid

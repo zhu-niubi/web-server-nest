@@ -1,0 +1,124 @@
+extends ../layout/main.pug
+
+
+//- banner
+block banner
+    // Hero
+    .d-flex.bg-img-center#bg-banner(style="background-image: url(" + data.productType.image[0] + ");")
+        .container.d-flex.justify-content-start.flex-column.min-vh-lg-50.content-space-4.content-px-1
+            .d-flex
+                img(src=websiteConfig.global.bannerLogo width=48 height=38 loading="lazy")
+                sup.text-blue.sup-1 TM
+                h3.text-white.mx-2.HarmonyOS_Sans_Black_Italic.fonr-size-2 #{data.productType.name}
+            .w-lg-65.HarmonyOS_Sans_Black_Italic.my-3
+                span.text-white !{data.productType.descriptions}
+            // End Hero
+
+
+block content
+    //#{JSON.stringify(data.productType)}
+    // Team
+    .bg-black
+        .container.content-space-1
+            .row.row-cols-1.row-cols-sm-2.row-cols-lg-3.justify-content-center.HarmonyOS_Sans_Black_Italic
+                each p in data.products
+                    .col.mb-10
+                        // Team
+                        // Card
+                        .w-sm-65.text-center.mx-auto
+                        a.card.card-ghost.card-transition-zoom.border-radius-0(href='/' + local + '/products/detail/' + p.urlIndex + '.html')
+                            .card-transition-zoom-item.border-radius-0
+                                img.card-img.card-img-top.border-radius-0.position-relative(
+                                    src=(p.image[0][0] == 'h' ? p.image[0] : (p.image[0][0] == '/' ? p.image[0] : p.image[0][0])),
+                                    alt='Card image cap',
+                                    loading="lazy"
+                                )
+                                img.img-footer(src=websiteConfig.global.imgFooter[0] loading="lazy")
+                                span.img-footer-text.text-white-70.font-size-1.fst-italic.footer-color ISF #{data.productType.name}
+                            .card-img-overlay.hover-footer(id=p.urlIndex)
+                                img(src=websiteConfig.global.smallLogo  width=18 height=13 loading="lazy")
+                                sup.tm.sup-1 TM
+                                card-title.text-white-80.my-h5.mx-1 #{data.productType.name}
+                                h4.card-title.text-white.mt-2  #{p.name}
+                            // End Card
+            //- 视频
+            if data.productType.descriptionContent.video
+                .row
+                    .col
+                        style.
+                            video {
+                                display: block;
+                                margin: 0 auto;
+                                width: 100%; /* 调整视频宽度 */
+                                border-radius: 10px; /* 添加圆角 */
+                                margin-top: 20px;
+                            }
+                        video(controls='controls' width='100%')
+                            source(src=data.productType.descriptionContent.video, type='video/mp4')
+
+        if data.productType.descriptionContent
+            if data.productType.descriptionContent.images
+                .row.d-flex.justify-content-center.flex-column
+                    .col
+                        each img in data.productType.descriptionContent.images
+                            .d-flex.bg-img-center(style="background-image: url(" + img + ");")
+                                .min-vh-lg-55
+
+        if data.productType.descriptionContent.content
+            if data.productType.descriptionContent.content.imgs
+                .row.d-flex.justify-content-center.flex-column
+                    .col
+                      each img in data.productType.descriptionContent.content.imgs
+                          .d-flex.bg-img-center(style="background-image: url(" + img + ");")
+                              .min-vh-lg-55
+            //if data.productType.descriptionContent.content
+               //    .d-flex.bg-img-center(style="background-image: url(" + data.productType.descriptionContent.content.bgImg + ");")
+               //        .container.d-flex.justify-content-start.flex-column.min-vh-lg-75.content-space-1.HarmonyOS_Sans_Black
+               //            .w-lg-25.text-start.mx-lg-0.HarmonyOS_Sans_Black_Italic
+               //                span.text-blue.my-h4 #{ data.productType.descriptionContent.content.smallTitle}
+               //                h4.text-blue #{ data.productType.descriptionContent.content.title}
+               //                span.text-white.font-size-2 #{ data.productType.descriptionContent.content.subtitle}
+
+
+block script
+    script.
+        window.onresize = resizeBannerImage;
+        let width = document.body.clientWidth;//获取浏览器窗口宽度
+        if (width) {
+            resizeBannerImage()
+        }
+        function resizeBannerImage() {
+
+            // 自适应，不同屏幕调用不同的图片
+            let banner = document.getElementById("bg-banner");
+
+            width = document.body.clientWidth;
+            if (width < 576) {
+                banner.style.minHeight = "100vh";
+                banner.style.backgroundImage = "url(" + '#{data.productType.image[1]}' + ")";
+            } else {
+                banner.style.minHeight = "50vh";
+                banner.style.backgroundImage = "url(" + '#{data.productType.image[0]}' + ")";
+            }
+        }
+
+        let footer = document.getElementsByClassName("hover-footer");
+        let img = document.getElementsByClassName("img-footer");
+        let color = document.getElementsByClassName("footer-color");
+
+        var el = window.document.body; //声明一个变量，默认值为body
+        window.document.body.onmouseover = function (event) {
+            el = event.target; //鼠标每经过一个元素，就把该元素赋值给变量el
+            for (let i = 0; i < footer.length; i++) {
+                if (el.id == footer[i].id) {
+                    img[i].src = '#{websiteConfig.global.imgFooter[1]}';
+                    color[i].style.color = '#25AE9C'
+                } else {
+                    img[i].src = '#{websiteConfig.global.imgFooter[0]}';
+                    color[i].style.color = "rgba(255, 255, 255, 0.7)"
+                }
+            }
+        }
+
+		
+		

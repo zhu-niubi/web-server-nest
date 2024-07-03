@@ -1,0 +1,186 @@
+extends ./layout/main.pug
+//- 首页图
+block banner
+
+    .text-white
+      - const {slides} = data
+        //- -const {sunroof} = data
+      - const video = slides.isf_china.video.split('.')[0]
+        //- | #{JSON.stringify(video)}
+        //- 1
+        .video-bg(style='min-height:100vh;')
+            .js-video-bg.zz-content(data-hs-video-bg-options=`{"videoId": "${video}"}`)
+                .navbar.container.fst-italic.d-flex.justify-content-start.flex-column.min-vh-lg-75.content-space-4.content-space-lg-b-3.my-5
+                    .w-lg-65.text-center.mx-lg-auto
+                        if slides.isf_china
+                            span.text-center.text-white #{slides.isf_china.title}
+                            h2.text-white.text-center #{slides.isf_china.title1}
+                            h1.HarmonyOS_Sans_Black_Italic(style="line-height:45px").text-center.text-blue #{slides.isf_china.descript}
+                            .text-white.w-lg-50.text-center.mx-lg-auto #{slides.isf_china.descript1}
+                            .text-white.w-lg-50.text-center.mx-lg-auto #{slides.isf_china.descript2}
+                            button.button.btn-primary.bg-blue.text-black.my-2 #{websiteConfig.i18n.index.shopNow}
+
+
+block content 
+    //- 2
+    .fst-italic.d-flex.justify-content-start.flex-column.min-vh-lg-35.content-space-6.content-space-lg-b-3.bg
+        .w-lg-65.text-center.mx-lg-auto
+            h2.text-center.text-black.HarmonyOS_Sans_Black_Italic #{websiteConfig.index.tpu_casting.title}
+            .text-black.text-center #{websiteConfig.index.tpu_casting.descript}
+            .text-black.text-center #{websiteConfig.index.tpu_casting.descript1}
+            .text-black.text-center #{websiteConfig.index.tpu_casting.descript2}
+            .text-black.text-center #{websiteConfig.index.tpu_casting.descript3}
+    //- 3
+    // Hero
+    .d-flex.bg-i.position-relative(style="background-image: url(" + websiteConfig.index.ppf_products.bgImg + ");min-height:100vh;")
+        .container.d-flex.justify-content-start.flex-column.min-vh-lg-35.content-space-6.content-space-lg-b-3
+            .w-lg-50.text-center.mx-lg-auto
+                h2.text-blue.fst-italic.HarmonyOS_Sans_Black_Italic #{websiteConfig.index.ppf_products.title}
+                .text-white !{websiteConfig.index.ppf_products.descript}
+                .text-white !{websiteConfig.index.ppf_products.descript1}
+            // End Hero
+    //#{JSON.stringify(6231785412368723454123785623478624792164916478126214785)}
+    //- 4
+    if data.yParentGroups.length > 0
+        .d-flex.bg-img-center.bg-banner(style="background-image: url(" + data.yParentGroups[0].image[0][0] + ");" id=key)
+            .container.d-flex.justify-content-start.flex-column.min-vh-lg-75.content-space.form-switch
+                .d-flex.my-3
+                    img(src=websiteConfig.global.bannerLogo width=68 height=58 loading="lazy")
+                    sup.text-blue.sup-1 TM
+                    h2.text-white.mx-2.HarmonyOS_Sans_Black_Italic #{data.yParentGroups[0].parentProductType.name}
+                .w-lg-65.mb-5.mb-sm-7.mb-lg-10
+                    .text-white.fst-italic.my-3 !{data.yParentGroups[0].descriptions}
+        .container.content-space-1
+            .row.row-cols-1.row-cols-sm-2.row-cols-md-3
+              each p in data.yParentGroups
+                  .col.mb-5.mb-md-0.my-4
+                      // Card
+                      a.card.card-ghost.card-transition-zoom.border-radius-0(href='/' + local + '/products/' + p.key + '.html')
+                          .card-transition-zoom-item.fst-italic.border-radius-0
+                              img.card-img.card-img-top.border-radius-0.position-relative(src=p.image[2][0], alt='Card image cap' loading="lazy")
+                              img.img-footer(src=websiteConfig.global.imgFooter[0] loading="lazy")
+                              span.img-footer-text.text-white-70.font-size-1.footer-color ISF #{p.name}
+                              .card-img-overlay.hover-footer(id=p.key)
+                                  img(src=websiteConfig.global.smallLogo  width=18 height=13 loading="lazy")
+                                  sup.text-white.sup TM
+                                  card-title.text-white #{p.name}
+                                  h3.card-title.text-white.mt-2  #{p.name}
+
+
+    if data.productGroups
+      each pg,key in data.productGroups
+          .d-flex.bg-img-center.bg-banner(style="background-image: url(" + pg.productType.image[0] + ");" id=key)
+              .container.d-flex.justify-content-start.flex-column.min-vh-lg-75.content-space.form-switch
+                  .d-flex.my-3
+                      img(src=websiteConfig.global.bannerLogo width=68 height=58 loading="lazy")
+                      sup.text-blue.sup-1 TM
+                      h2.text-white.mx-2.HarmonyOS_Sans_Black_Italic #{pg.productType.name}
+                  .w-lg-65.mb-5.mb-sm-7.mb-lg-10
+                      .text-white.fst-italic.my-3 !{pg.productType.descriptions}
+                      a(style="width:126px;display:block" href='/' + local + '/products/' + pg.productType.key + '.html').button-0.btn-primary.bg.btn-sm.mb-1.me-1.text-white.my-3.text-center #{websiteConfig.i18n.index.learnMore}
+              //- 5
+              // Card Grid
+          if pg.products.length > 0
+              .container.content-space-1
+                  .row.row-cols-1.row-cols-sm-2.row-cols-md-3
+                    each p in pg.products
+                        .col.mb-5.mb-md-0.my-4
+                            // Card
+                            a.card.card-ghost.card-transition-zoom.border-radius-0(href='/' + local + '/products/detail/' + p.urlIndex + '.html')
+                                .card-transition-zoom-item.fst-italic.border-radius-0
+                                    img.card-img.card-img-top.border-radius-0.position-relative(src=`${typeof p.image[0] === 'string' ? p.image[0] : (Array.isArray(p.image[0]) ? p.image[0][0] : '')}`, alt='Card image cap' loading="lazy")
+                                    img.img-footer(src=websiteConfig.global.imgFooter[0] loading="lazy")
+                                    span.img-footer-text.text-white-70.font-size-1.footer-color ISF #{p.productType.name}
+                                    .card-img-overlay.hover-footer(id=p.urlIndex)
+                                        img(src=websiteConfig.global.smallLogo  width=18 height=13 loading="lazy")
+                                        sup.text-white.sup TM
+                                        card-title.text-white #{p.productType.name}
+                                        h3.card-title.text-white.mt-2  #{p.name}
+    //- 6
+    .d-flex.bg-img-center#last-banner.position-relative(style="background-image: url(" + websiteConfig.index.sunroof_ppf.bgImg[0] + ");")
+        .container.d-flex.justify-content-start.flex-column.min-vh-lg-75.content-space.font-size.content-px-1.move.position-relative
+            .d-flex.my-3
+                img(src=websiteConfig.global.bannerLogo width=68 height=58 loading="lazy")
+                sup.text-blue.sup-1 TM
+                h2.display-6.text-white.mx-2.HarmonyOS_Sans_Black_Italic #{websiteConfig.index.sunroof_ppf.title}
+            .w-lg-100.mb-5.mb-sm-7.mb-lg-10
+                h4.text-blue !{websiteConfig.index.sunroof_ppf.descript}
+                small.text-white !{websiteConfig.index.sunroof_ppf.descript1}
+                small.text-white !{websiteConfig.index.sunroof_ppf.descript2}
+                small.text-white !{websiteConfig.index.sunroof_ppf.descript3}
+                a(style="width:126px;display:block" href='/' + local + '/products/sunroof' + '.html').button-0.btn-primary.bg.btn-sm.mb-1.me-1.text-white.my-3.text-center #{websiteConfig.i18n.index.learnMore}
+
+
+    if websiteConfig.index.imgs
+        .row.d-flex.justify-content-center.flex-column
+          each img in websiteConfig.index.imgs
+              .col
+                  .d-flex.bg-img-center(style="background-image: url(" + img + ");")
+                      .min-vh-lg-55
+block script
+    //- 4
+    script.
+      window.onresize = resizeBannerImage;
+      let width = document.body.clientWidth;//获取浏览器窗口宽度
+      if (width) {
+        
+        resizeBannerImage()
+      }
+
+      function resizeBannerImage() {
+        var data = !{JSON.stringify(data)};
+        //- console.log(data);
+        width = document.body.clientWidth;
+
+        let banner = document.getElementsByClassName("bg-banner");
+        let lastBanner = document.getElementById('last-banner');
+
+
+
+        let productGroups = data.productGroups;
+
+        for (let i = 1; i < banner.length; i++) {
+          //- console.log("???????",productGroups[banner[i].id].productType)
+          if (width < 576) {
+            
+            banner[i].style.minHeight = "100vh";
+            banner[i].style.backgroundImage = "url(" + productGroups[banner[i].id].productType.image[1] + ")";
+          } else {
+            banner[i].style.minHeight = "75vh";
+            banner[i].style.backgroundImage = "url(" + productGroups[banner[i].id].productType.image[0] + ")";
+          }
+        }
+        //- 6
+        if (width < 576) {
+          lastBanner.style.minHeight = "100vh";
+          lastBanner.style.backgroundImage = "url(" + '#{websiteConfig.index.sunroof_ppf.bgImg[1]}' + ")";
+        } else {
+          lastBanner.style.minHeight = "50vh";
+          lastBanner.style.backgroundImage = "url(" + '#{websiteConfig.index.sunroof_ppf.bgImg[0]}' + ")";
+        }
+      }
+
+
+
+
+
+      let footer = document.getElementsByClassName("hover-footer");
+      let img = document.getElementsByClassName("img-footer");
+      let color = document.getElementsByClassName("footer-color");
+
+      var el = window.document.body; //声明一个变量，默认值为body
+      console.log('版本号：1.0.5');
+      window.document.body.onmouseover = function(event) {
+        el = event.target; //鼠标每经过一个元素，就把该元素赋值给变量el
+        for (let i = 0; i < footer.length; i++) {
+          if (el.id == footer[i].id) {
+            img[i].src = '#{websiteConfig.global.imgFooter[1]}'
+            color[i].style.color = "#2ED9C3"
+          } else {
+            img[i].src = '#{websiteConfig.global.imgFooter[0]}'
+            color[i].style.color = "rgba(255, 255, 255, 0.7)"
+          }
+        }
+      }
+
+			

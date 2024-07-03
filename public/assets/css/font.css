@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'HarmonyOS_Sans_Black_Italic';
+  src: url('../ttf/HarmonyOS_Sans_Black_Italic.ttf');
+}
+
+@font-face {
+  font-family: 'HarmonyOS_Sans_Black';
+  src: url('../ttf/HarmonyOS_Sans_Black.ttf');
+}
+
+@font-face {
+  font-family: 'HarmonyOS_Sans_Medium';
+  src: url('../ttf/HarmonyOS_Sans_Medium.ttf');
+}
+
+@font-face {
+  font-family: 'HarmonyOS_Sans_Medium_Italic';
+  src: url('../ttf/HarmonyOS_Sans_Medium_Italic.ttf');
+}
+
+.HarmonyOS_Sans_Black_Italic {
+  font-family: 'HarmonyOS_Sans_Black_Italic';
+}
+
+.HarmonyOS_Sans_Black {
+  font-family: 'HarmonyOS_Sans_Black';
+}
+
+.HarmonyOS_Sans_Medium_Italic {
+  font-family: 'HarmonyOS_Sans_Medium_Italic';
+}
+
+.HarmonyOS_Sans_Medium {
+  font-family: 'HarmonyOS_Sans_Medium';
+}

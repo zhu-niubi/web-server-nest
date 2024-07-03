@@ -1,0 +1,41 @@
+extends ../layout/main.pug
+
+//- banner
+block banner
+	// Hero
+	.d-flex.bg-img-center(style='background-image: url(/assets/img/1920x800/img2.jpg);')
+		.container.d-flex.justify-content-end.flex-column.min-vh-lg-35.content-space-1.content-space-lg-b-3
+			.w-lg-65.text-center.mx-lg-auto.mb-5.mb-sm-7.mb-lg-10
+				span.text-white.text-center
+				h3.display-6.text-white 
+			// End Hero
+
+
+
+block content
+	//-  | #{JSON.stringify(data)}
+	// Card Grid
+	.container.content-space-1
+		// Heading
+		.w-lg-65.text-center.mx-lg-auto.mb-5.mb-sm-7.mb-lg-10
+			h2 #{websiteConfig.i18n.article.industryInformation}
+			p
+				| #{websiteConfig.i18n.article.industryInformationDescription}
+		// End Heading
+		.row.row-cols-1.row-cols-sm-2.row-cols-md-3.row-cols-lg-4
+			each item in data
+				.col.mb-5.mb-md-0
+					// Card
+					a.card.card-ghost.card-transition-zoom.h-100(href='/'+local+`/article/${item._id}`)
+						.card-transition-zoom-item
+							img.card-img(src=`${ item.cover || '/assets/img/580x480/img1.jpg'}`, alt=item.digest loading="lazy")
+							span.badge.bg-dark.text-white.card-pinned-top-end #{item.author}
+						.card-body
+							h5 #{item.title}
+							p.card-text
+								| #{item.digest}
+						.card-footer
+							span.card-link #{websiteConfig.i18n.article.viewMore}
+					// End Card
+
+	// End Card Grid

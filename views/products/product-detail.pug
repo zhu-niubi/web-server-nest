@@ -1,0 +1,81 @@
+extends ../layout/main.pug
+
+//- banner
+block banner
+	// Hero
+	.d-flex.bg-img-center#bg-banner(style='background-image: url('+data.productType.image[0]+');')
+		.container.d-flex.justify-content-start.flex-column.min-vh-lg-35.content-space-4
+			.w-lg-65.text-start.mx-lg-auto.mb-5.mb-sm-7.mb-lg-10.mx-sm-center 
+				span.text-white.text-center
+					//- | We&apos;re hiring for 
+					//- span.fw-bold 72 positions
+					//- a.badge.bg-dark.text-white.rounded-pill.ms-1(href='#openingsSection') View opening
+				h3.display-6.text-white.HarmonyOS_Sans_Black_Italic #{data.productType.name}
+			//- p.lead.text-white We&apos;re on a mission to make high-quality sites accessible for all.
+			// End Hero
+
+block content
+	// Features
+	.overflow-hidden
+		.container.content-space-1
+			.row.align-items-lg-center
+				.col-lg-7.me-auto.ms-lg-n10.mb-5.mb-lg-0
+					row.align-items-center
+						a.card.border-none.border-radius-0
+							.card-transition-zoom-item.border-radius-0.bg-black
+								img.card-img.card-img-top.border-radius-0.position-relative(src=data.product.image[0], alt='Card image cap' loading="lazy")
+								img.img-footer(src=websiteConfig.global.imgFooter[0] loading="lazy")
+								span.img-footer-text.text-white-70.fst-italic ISF #{data.productType.name}
+							.card-img-overlay
+								img(src=websiteConfig.global.smallLogo  width=20 height=15 loading="lazy")
+								sup.tm.sup-1 TM
+								card-title.text-white-80.fst-italic  #{data.productType.name} 
+								h4.card-title.text-white.mt-2  #{data.product.name}
+							// End Card
+					// End Row
+				// End Col
+				.col-lg-5
+					.mb-5
+						h2.text-white.HarmonyOS_Sans_Black_Italic #{data.product.name}
+						p.text-white !{data.product.content}
+				.col
+					ul.list-inline.mb-0.d-flex.justify-content-end
+						li.list-inline-item
+							a.btn.btn-icon.btn-sm.btn-ghost-secondary.rounded-circle(href='#')
+								i.bi-facebook
+						li.list-inline-item
+							a.btn.btn-icon.btn-sm.btn-ghost-secondary.rounded-circle(href='#')
+								i.bi-twitter
+						li.list-inline-item
+							a.btn.btn-icon.btn-sm.btn-ghost-secondary.rounded-circle(href='#')
+								i.bi-github
+						li.list-inline-item
+							a.btn.btn-icon.btn-sm.btn-ghost-secondary.rounded-circle(href='#')
+								i.bi-slack
+
+				// End List Checked
+				// End Col
+			// End Row
+	// End Features
+	
+
+
+block script
+	script.
+		window.onresize=resizeBannerImage;
+		let width = document.body.clientWidth;//获取浏览器窗口宽度
+		if(width){
+			resizeBannerImage()
+		}
+		function resizeBannerImage(){
+			let banner = document.getElementById("bg-banner");
+			width = document.body.clientWidth;
+			if(width < 576){
+				banner.style.minHeight = "100vh";
+				banner.style.backgroundImage= "url("+'#{data.productType.image[1]}'+")";
+			}else{
+				banner.style.minHeight = "50vh";
+				banner.style.backgroundImage= "url("+'#{data.productType.image[0]}'+")";
+			}
+		}
+

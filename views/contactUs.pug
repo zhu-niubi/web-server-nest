@@ -1,0 +1,126 @@
+extends ./layout/main
+
+//- banner
+block banner
+	// Hero
+	.d-flex.bg-img-center(style='background-image: url('+( websiteConfig.contactUs.bannerImg || '/assets/img/1920x1080/img2.jpg') +');')
+		.container.d-flex.justify-content-end.flex-column.min-vh-lg-35.content-space-4.content-space-lg-b-3
+			.w-lg-65.text-center.mx-lg-auto.mb-5.mb-sm-7.mb-lg-10
+				span.text-white.text-center
+				h3.display-6.text-white 
+
+			// End Hero
+
+block content
+	// Post a Comment
+	.overflow-hidden
+		.container.content-space-1
+			.w-lg-65.text-center.mx-lg-auto.mb-7
+				h3.mb-5.text-blue #{websiteConfig.i18n.contactUs.contactUs}
+				p.text-white.HarmonyOS_Sans_Medium_Italic #{websiteConfig.i18n.contactUs.contactUsDescription}
+			.row
+				.col-lg-6.mb-10.mb-lg-0
+					.pe-lg-10
+						.mb-5
+						h4.text-blue.HarmonyOS_Sans_Black 纳琳威|纳米科技|
+						.mb-5
+						a.btn.btn-ghost-dark.btn-sm().text-white.HarmonyOS_Sans_Black_Italic
+							i.bi-building.me-2.me-2
+							|  地址：上海市 闵行区 顾戴路2337号 丰树商业城D18A
+						a.btn.btn-ghost-dark.btn-sm().text-white.HarmonyOS_Sans_Black_Italic
+							i.bi-envelope-open.me-2
+							|  邮箱：intsales@nalinke.com
+						a.btn.btn-ghost-dark.btn-sm().text-white.HarmonyOS_Sans_Black_Italic
+							i.bi-telephone.me-2
+							|  电话：+8618201786076
+						//a.btn.btn-ghost-dark.btn-sm().text-white.HarmonyOS_Sans_Black_Italic
+						//	i.bi-chat-right-dots.me-2
+						//	|  传真：(86-21) 6115 9813
+						.mb-5
+						h4.text-blue.HarmonyOS_Sans_Black NALINV NANOTECHNOLOGY
+						.mb-5
+						a.btn.btn-ghost-dark.btn-sm().text-white.HarmonyOS_Sans_Black_Italic
+							i.bi-building.me-2.me-2
+							|  Address: Mapletree business city, Blk D-18A,No 2337, Gudai Road, Minhang District, 201100, Shanghai, China.
+						a.btn.btn-ghost-dark.btn-sm().text-white.HarmonyOS_Sans_Black_Italic
+							i.bi-envelope-open.me-2
+							|  Email: intsales@nalinke.com
+						a.btn.btn-ghost-dark.btn-sm().text-white.HarmonyOS_Sans_Black_Italic
+							i.bi-telephone.me-2
+							|  Tel: +8618201786076
+						//a.btn.btn-ghost-dark.btn-sm().text-white.HarmonyOS_Sans_Black_Italic
+						//	i.bi-chat-right-dots.me-2
+						//	|  Fax: (86-21) 6115 9813
+				.col-lg-6
+					.position-relative
+						.card.card-lg.bg-black
+							.card-body
+								form(id="commentForm" action="comments")
+									.d-grid.gap-4
+										// Form
+										.row
+											.col-sm-6.mb-4.mb-sm-0
+												label.text-white.HarmonyOS_Sans_Black_Italic.form-label(for='firstName') First name
+												input#blogContactsFormFirstName.form-control.bg-black(type='text' name='firstName' placeholder='First name' aria-label='First name' required="")
+											.col-sm-6
+												label.text-white.HarmonyOS_Sans_Black_Italic.form-label(for='lastName') Last name
+												input#blogContactsFormLasttName.form-control.bg-black(type='text' name='lastName' placeholder='Last name' aria-label='Last name' required="")
+										// End Form
+										// Form
+										span.d-block
+											label.text-white.HarmonyOS_Sans_Black_Italic.form-label(for='email') Your email
+											input#blogContactsFormEmail.form-control.bg-black(type='email' name='email' placeholder='email@site.com' aria-label='email@site.com' required="")
+										// End Form
+										// Form
+										span.d-block
+											label.text-white.HarmonyOS_Sans_Black_Italic.form-label(for='comment') Comment
+											textarea#blogContactsFormComment.form-control.bg-black(name='comment' placeholder='Leave your comment here...' aria-label='Leave your comment here...' rows='5' required="")
+										// End Form
+										.d-grid
+											button.text-white.HarmonyOS_Sans_Black_Italic.btn.btn-outline-primary(type='submit' id='form-submit') Submit
+										.alert.text-white.HarmonyOS_Sans_Black_Italic.alert-success(role='alert' style='display:none;' id='sent-alert')
+											| sent successfully! 📩
+	if websiteConfig.global.contactUsImgs
+		.row.d-flex.justify-content-center.flex-column
+			.col
+				each img in websiteConfig.global.contactUsImgs
+					.d-flex.bg-img-center(style="background-image: url(" + img + ");")
+						.min-vh-lg-55
+	// End Card
+	// End Col
+	// End Row
+	// End Post a Comment
+
+
+block script
+
+	script.
+		/* attach a submit handler to the form */
+		$("#commentForm").submit(function(event) {
+		/* stop form from submitting normally */
+		event.preventDefault();
+		/* get some values from elements on the page: */
+		var $form = $(this),
+		term = $form.find('input[name="s"]').val(),
+		url = '/api/' + $form.attr('action');
+		const formArray = $('#commentForm').serializeArray()
+
+		/* Send the data using post */
+		var posting = $.post(url, {
+		firstName: formArray.find(f=>f.name==='firstName').value,
+		lastName:formArray.find(f=>f.name==='lastName').value,
+		email:formArray.find(f=>f.name==='email').value,
+		comment:formArray.find(f=>f.name==='comment').value,
+		});
+		/* Put the results in a div */
+		posting.done(function(data) {
+			$('#form-submit').attr("disabled","");
+			$('#sent-alert').attr("style","display:block;")
+		});
+		posting.fail(function(data){
+			alert("error")
+		})
+		});
+
+
+

@@ -1,0 +1,55 @@
+// Header
+header#header.navbar.navbar-expand-lg.navbar-center.navbar-light.my-h4.navbar-end.navbar-sticky-top
+    .container
+        .js-mega-menu.navbar-nav-wrap
+            // Logo
+            a.navbar-brand.margin-r-0(href='/' + local + '/index.html' aria-label='NKD')
+                img(src=websiteConfig.menu.Logo alt='Logo' width="120%" loading="lazy")
+            //card-title.w-lg-8.text-white.my-h6.fst-italic.line-height-0  #{websiteConfig.menu.logoTitle}
+            // End Logo
+            // Toggle
+            button.navbar-toggler.ms-auto(type='button' data-bs-toggle='collapse' data-bs-target='#megaMenuBasicToggler' aria-label='Toggle navigation' aria-expanded='false' aria-controls='megaMenuBasicToggler')
+                span.navbar-toggler-default
+                    i.bi-list
+                span.navbar-toggler-toggled
+                    i.bi-x
+            // End Toggle
+            nav#megaMenuBasicToggler.collapse.navbar-collapse
+                // Navbar
+                .navbar-sticky-top-scroller
+                    ul.navbar-nav.ms-auto
+                        li.nav-item.menu-li
+                            a.nav-link.HarmonyOS_Sans_Black(href='/' + local + '/index.html') #{websiteConfig.i18n.menu.home}
+                        // https://ncc.isffilm.com/
+                        li.nav-item.menu-li
+                            a.nav-link.HarmonyOS_Sans_Black(href='https://ncc.isffilm.com/' target='_blank') #{websiteConfig.i18n.menu.preview3d}
+                        // Dropdown
+                        li.hs-has-sub-menu.nav-item.menu-li
+                            a#headerWithMegaMenuDropdown.hs-mega-menu-invoker.HarmonyOS_Sans_Black.nav-link( role='button' data-bs-toggle='collapse' aria-expanded='false') #{websiteConfig.i18n.menu.aboutUs}
+                            // Mega Menu
+                            .hs-sub-menu.dropdown-menu.menu-li-s(aria-labelledby='headerWithMegaMenuDropdown' style='min-width: 12rem;')
+                                a.dropdown-item(href=noGroupPage.terms ? '/' + local + '/pages/' + noGroupPage['about-isf'].urlIndex + '.html':'#')
+                                    .menu-li-text.font-size-1  #{websiteConfig.i18n.menu.aboutIsf}
+                                a.dropdown-item(href='/' + local + '/contactUs' + '.html')
+                                    .menu-li-text.font-size-1  #{websiteConfig.i18n.menu.contactUs}
+                        each p in rootProductType
+                            li.hs-has-sub-menu.nav-item.menu-li
+                                a#headerWithMegaMenuDropdown_product.hs-mega-menu-invoker.HarmonyOS_Sans_Black.nav-link(href=p.children && p.children.length > 0 ? 'javascript:void(0)':'/' + local + `/products/${p.key}` + '.html') #{p.name}
+                                .hs-sub-menu.dropdown-menu.menu-li-s(aria-labelledby='headerWithMegaMenuDropdown_product' style='min-width: 12rem;')
+                                    if p.children
+                                        each pc in p.children
+                                            a.dropdown-item(href='/' + local + `/products/${pc.key}` + '.html')
+                                                .menu-li-text.font-size-1 #{pc.name}
+                        //- li.nav-item.menu-li
+                        //- 	a.nav-link(href='/'+local+'/article'+'/index.html') #{websiteConfig.i18n.menu.newsAndMedia}
+                        li.hs-has-sub-menu.nav-item.menu-li
+                            a#headerWithMegaMenuDropdown_lang.hs-mega-menu-invoker.nav-link( role='button' data-bs-toggle='collapse' aria-expanded='false')
+                                span.d-flex.align-items-center
+                                    img#lang-img-foot.avatar.avatar-xss.avatar-circle.me-2(src='/assets/vendor//flag-icon-css/flags/1x1/' + currentLangConfig.key + '.svg' alt='Image description' width='16' loading="lazy")
+                                    //- span#lang-span-foot #{currentLangConfig.name}
+                            .hs-sub-menu.dropdown-menu.menu-li-s(aria-labelledby='headerWithMegaMenuDropdown_lang' style='min-width: 12rem;')
+                                each l in langConfig
+                                    a#change-lang-en.dropdown-item(href='javascript:;' onclick='handleLangChange(\'' + l.key + '\')')
+                                        .menu-li-text.font-size-1
+                                            img.avatar.avatar-xss.avatar-circle.me-2(src='/assets/vendor/flag-icon-css/flags/1x1/' + l.key + '.svg' alt='Image description' width='14' loading="lazy")
+                                            span #{l.name}

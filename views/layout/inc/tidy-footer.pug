@@ -1,0 +1,115 @@
+// ========== FOOTER ==========
+footer
+
+	.bg(style='background-color: #1d1d1d')
+		.container
+			.row.align-items-center.pt-8.pb-4
+				.col-md.mb-5.mb-md-0
+					h2.fw-medium.text-white-70.mb-0
+						span.fw-bold.text-white
+						img(src=websiteConfig.global.bannerLogo alt='Image description' loading="lazy")
+				// End Col
+				// End Row
+				.border-bottom.border-white-10
+					.row.py-6
+						each g, key in groups
+							.col-6.col-sm-4.col-lg.mb-7.mb-lg-0
+								span.text-cap.text-white #{key}
+								// List
+								ul.list-unstyled.list-py-1.mb-0
+									each p in g
+										li
+											a.link.link-light.link-light-75(href='/'+local+`/pages/${p.urlIndex}`+'.html') #{p.name}
+						// End Row
+						
+						.col-6.col-sm-4.col-lg.mb-7.mb-lg-0
+							ul.list-unstyled.list-py-1.mb-0
+								li
+									a.link.link-light.link-light-75(href='/'+local+'.html') #{websiteConfig.i18n.menu.home}
+								li
+									a.link.link-light.link-light-75(href='/'+local+`/contactUs`+'.html') #{websiteConfig.i18n.footer.contactUs}
+								li
+									a.link.link-light.link-light-75(href='#') ABOUT US
+								li
+									a.link.link-light.link-light-75(href='#') COMPANY INTRODUCTION
+								li
+									a.link.link-light.link-light-75(href='#') SAFTY&ENVIRONMENT
+								li
+									a.link.link-light.link-light-75(href='#') COMPANY STRATEGY
+								
+						
+						.col-6.col-sm-4.col-lg.mb-7.mb-lg-0
+							span.text-cap.text-white #{websiteConfig.i18n.footer.products}
+							// List
+							ul.list-unstyled.list-py-1.mb-0
+								each p in productType
+									li
+										a.link.link-light.link-light-75(href='/'+local+`/products/${p.key}`+'.html') #{p.name}
+
+						.col-6.col-sm-4.col-lg
+							span.text-cap.text-white FOLLOW US
+							// List
+							ul.list-unstyled.list-py-2.mb-0
+								li
+									a.link.link-light.link-light-75(href='#')
+										.d-flex
+											.flex-shrink-0
+												i.bi-envelope-open-fill
+											.flex-grow-1.ms-2
+												span SUBSCRIBE BY EMAIL
+								li
+									a.link.link-light.link-light-75(href='#')
+										.d-flex
+											.flex-shrink-0
+												i.bi-facebook
+											.flex-grow-1.ms-2
+												span FACEBOOK
+								li
+									a.link.link-light.link-light-75(href='#')
+										.d-flex
+											.flex-shrink-0
+												i.bi-linkedin
+											.flex-grow-1.ms-2
+												span LINKEDIN
+								li
+									a.link.link-light.link-light-75(href='#')
+										.d-flex
+											.flex-shrink-0
+												i.bi-twitter
+											.flex-grow-1.ms-2
+												span TWITTER
+								li
+									a.link.link-light.link-light-75(href='#')
+										.d-flex
+											.flex-shrink-0
+												i.bi-slack
+											.flex-grow-1.ms-2
+												span SLACK
+							// End List
+
+				.row.align-items-md-center.py-6
+					.col-md.mb-3.mb-md-0
+						// List
+						ul.list-inline.list-px-2.mb-0
+							li.list-inline-item
+								a.link.link-light.link-light-75(href=noGroupPage.privacyAndPolicy ? '/'+local+'/pages/'+noGroupPage.privacyAndPolicy.urlIndex+'.html':'#') #{websiteConfig.i18n.footer.privacyAndPolicy}
+							li.list-inline-item
+								a.link.link-light.link-light-75(href=noGroupPage.terms ? '/'+local+'/pages/'+noGroupPage.terms.urlIndex+'.html':'#') #{websiteConfig.i18n.footer.terms}
+							li.list-inline-item
+								// Button Group
+								.btn-group
+									a#selectLanguage.link.link-light.link-light-75(href='javascript:;' data-bs-toggle='dropdown' aria-expanded='false')
+										span.d-flex.align-items-center
+											img#lang-img-foot.avatar.avatar-xss.avatar-circle.me-2(src='/assets/vendor//flag-icon-css/flags/1x1/'+currentLangConfig.key+'.svg' alt='Image description' width='16' loading="lazy")
+											span#lang-span-foot #{currentLangConfig.name}
+									.dropdown-menu
+										each l in langConfig
+											a.dropdown-item.d-flex.align-items-center(href='javascript:;' onclick='handleLangChange(\''+ l.key +'\')')
+												img.avatar.avatar-xss.avatar-circle.me-2(src='/assets/vendor/flag-icon-css/flags/1x1/'+ l.key +'.svg' alt='Image description' width='16' loading="lazy")
+												span #{l.name}
+
+					.col-md.d-md-flex.justify-content-md-end
+						if websiteConfig.footer.company
+							p.fs-5.text-white-70.mb-0 &copy; #{websiteConfig.footer.company}
+
+				// End Row

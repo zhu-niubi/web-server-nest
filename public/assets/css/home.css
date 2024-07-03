@@ -1,0 +1,115 @@
+body,
+html {
+  background-color: #000;
+}
+.bg_v1 {
+  width: 100%;
+  background-color: #00b062;
+}
+.bg {
+  width: 100%;
+  background-color: #2ED9C3;
+}
+.button {
+    font-style: italic;
+    height: 40px;
+    width: 126px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 30px;
+    border-style: none;
+}
+.button-0 {
+  font-size: 14px;
+    font-weight: 700;
+  border-radius: 30px;
+}
+.content-space {
+  padding-top: 4rem !important;
+  padding-bottom: 4.5rem !important;
+}
+.content-space-5 {
+  padding-top: 16rem !important;
+  padding-bottom: 16rem !important;
+}
+.content-space-6 {
+  padding-top: 6.5rem !important;
+  padding-bottom: 6.5rem !important;
+}
+.zz-content {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1 !important;
+}
+.w-lg-35 {
+  width: 35% !important;
+}
+.my-5 {
+  margin-top: 6rem !important;
+  margin-bottom: 1.5rem !important;
+}
+.sup {
+  display: inline-block;
+  transform: scale(0.4);
+  font-size: 12px;
+}
+.sup-1 {
+  display: inline-block;
+  transform: scale(0.7);
+  font-size: 12px;
+  font-weight: 700;
+}
+.move {
+  margin-left: 1200px;
+}
+.bg-i {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.w-lg-60 {
+  width: 100% !important;
+}
+small {
+  /* position: absolute; */
+  display: block;
+  font-size:12px;
+}
+
+@media (max-width: 1700px) {
+  .move {
+    margin-left: 800px;
+  }
+}
+@media (max-width: 1300px) {
+  .move {
+    margin-left: 600px;
+  }
+}
+@media (max-width: 1012px) {
+  .move {
+    margin-left: 400px;
+  }
+}
+@media (max-width: 800px) {
+  .move {
+    margin-left: 200px;
+  }
+}
+@media (max-width: 576px) {
+  h2 {
+    font-size: 25px;
+  }
+  .move {
+    margin-left: 0;
+    margin-top: 50px;
+  }
+}
+@media (max-width: 720px) {
+  .bg-i {
+    background-size: auto 75%;
+  }
+}
